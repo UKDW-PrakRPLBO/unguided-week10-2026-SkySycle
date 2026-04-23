@@ -25,8 +25,24 @@ public class LoginController {
         // 5. Jika gagal, tampilkan pesan error "AUTHENTICATION FAILED" pada lblStatus.
         // ==============================================================================
 
-        // --- TULIS KODE ANDA DI BAWAH INI ---
 
+        String user = txtUsername.getText() == null ? "" : txtUsername.getText().trim();
+        String pass = txtPassword.getText() == null ? "" : txtPassword.getText();
+
+        UmbrellaDBManager db = new UmbrellaDBManager();
+        String fullName = db.validateUser(user, pass);
+
+        if (fullName != null) {
+            UmbrellaApp.loggedInUser = fullName;
+            try {
+                UmbrellaApp.switchScene("umbrella-view.fxml");
+            } catch (Exception e) {
+                e.printStackTrace();
+                lblStatus.setText("ERROR: cannot switch scene");
+            }
+        } else {
+            lblStatus.setText("AUTHENTICATION FAILED");
+        }
 
     }
 }
