@@ -6,9 +6,9 @@ package org.rplbo.app.ug8;
  */
 public class InventoryItem {
     private String itemName;
-    private int initialStock; // Stok Awal
-    private int newSupply;    // Pasokan Baru
-    private int finalStock;   // Stok Akhir (Hasil Penjumlahan)
+    private int initialStock;
+    private int newSupply;
+    private int finalStock;
 
     /**
      * Constructor untuk inisialisasi objek InventoryItem.
@@ -20,7 +20,6 @@ public class InventoryItem {
         this.finalStock = finalStock;
     }
 
-    // Getter dan Setter untuk Item Name
     public String getItemName() {
         return itemName;
     }
@@ -29,7 +28,6 @@ public class InventoryItem {
         this.itemName = itemName;
     }
 
-    // Getter dan Setter untuk Initial Stock
     public int getInitialStock() {
         return initialStock;
     }
@@ -38,7 +36,6 @@ public class InventoryItem {
         this.initialStock = initialStock;
     }
 
-    // Getter dan Setter untuk New Supply
     public int getNewSupply() {
         return newSupply;
     }
@@ -47,7 +44,6 @@ public class InventoryItem {
         this.newSupply = newSupply;
     }
 
-    // Getter dan Setter untuk Final Stock
     public int getFinalStock() {
         return finalStock;
     }
