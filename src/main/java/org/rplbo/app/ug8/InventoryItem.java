@@ -1,54 +1,48 @@
-package org.rplbo.app.ug8;
+package org.rplbo.app.ug8.Controller;
 
-/**
- * Model class untuk item inventaris Sector B.
- * Digunakan untuk mapping data dari database SQLite ke TableView JavaFX.
- */
-public class InventoryItem {
-    private String itemName;
-    private int initialStock;
-    private int newSupply;
-    private int finalStock;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.event.ActionEvent;
+import org.rplbo.app.ug8.UmbrellaApp;
+import org.rplbo.app.ug8.UmbrellaDBManager;
 
-    /**
-     * Constructor untuk inisialisasi objek InventoryItem.
-     */
-    public InventoryItem(String itemName, int initialStock, int newSupply, int finalStock) {
-        this.itemName = itemName;
-        this.initialStock = initialStock;
-        this.newSupply = newSupply;
-        this.finalStock = finalStock;
-    }
+public class LoginController {
+    @FXML private TextField txtUsername;
+    @FXML private PasswordField txtPassword;
+    @FXML private Label lblStatus;
 
-    public String getItemName() {
-        return itemName;
-    }
+    @FXML
+    private void handleLogin(ActionEvent event) {
+        // ==============================================================================
+        // TODO 1: PROSES AUTENTIKASI (LOGIN)
+        // ==============================================================================
+        // 1. Ambil input teks dari txtUsername dan txtPassword.
+        // 2. Buat instansiasi dari class UmbrellaDBManager.
+        // 3. Panggil metode validateUser() dari db manager tersebut.
+        // 4. Jika hasil validasi berhasil (tidak null):
+        //    a. Simpan nama user ke variabel statis UmbrellaApp.loggedInUser.
+        //    b. Pindah ke halaman "umbrella-view.fxml" menggunakan UmbrellaApp.switchScene().
+        // 5. Jika gagal, tampilkan pesan error "AUTHENTICATION FAILED" pada lblStatus.
+        // ==============================================================================
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
 
-    public int getInitialStock() {
-        return initialStock;
-    }
+        String user = txtUsername.getText() == null ? "" : txtUsername.getText().trim();
+        String pass = txtPassword.getText() == null ? "" : txtPassword.getText();
 
-    public void setInitialStock(int initialStock) {
-        this.initialStock = initialStock;
-    }
+        UmbrellaDBManager db = new UmbrellaDBManager();
+        String fullName = db.validateUser(user, pass);
 
-    public int getNewSupply() {
-        return newSupply;
-    }
+        if (fullName != null) {
+            UmbrellaApp.loggedInUser = fullName;
+            try {
+                UmbrellaApp.switchScene("umbrella-view.fxml");
+            } catch (Exception e) {
+                e.printStackTrace();
+                lblStatus.setText("ERROR: cannot switch scene");
+            }
+        } else {
+            lblStatus.setText("AUTHENTICATION FAILED");
+        }
 
-    public void setNewSupply(int newSupply) {
-        this.newSupply = newSupply;
-    }
-
-    public int getFinalStock() {
-        return finalStock;
-    }
-
-    public void setFinalStock(int finalStock) {
-        this.finalStock = finalStock;
     }
 }
