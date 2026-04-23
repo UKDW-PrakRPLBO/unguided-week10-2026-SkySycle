@@ -1,15 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<!--Buatlah Semirip mungkin, bebas asalkan jalan-->
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rplbo.app.ug8.Controller.LoginController">
+    <children>
+        <VBox alignment="CENTER" spacing="18.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+            <children>
+                <Label text="UMBRELLA CORP - SECTOR B">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.rplbo.app.ug8.Controller.LoginController"
-            prefHeight="400.0" prefWidth="600.0">
+                <VBox alignment="CENTER_LEFT" spacing="8.0">
+                    <padding>
+                        <Insets left="60" right="60" />
+                    </padding>
+                    <children>
+                        <Label text="OPERATIVE ID:" />
+                        <TextField fx:id="txtUsername" prefWidth="360.0" />
+
+                        <Label text="PASSCODE:" />
+                        <PasswordField fx:id="txtPassword" prefWidth="360.0" />
+
+                        <Button maxWidth="1.7976931348623157E308" onAction="#handleLogin" text="AUTHENTICATE" />
+
+                        <Label fx:id="lblStatus" text="" />
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
